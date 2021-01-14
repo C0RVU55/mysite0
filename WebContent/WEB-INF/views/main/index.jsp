@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%--
 	//로그인(세션에 데이터 유무) 체크를 위해 세션값 받아서 if문 넣어줌
 	//HttpSession session = request.getSesstion(); --> 컨트롤러에서 사용된 거라 다시 선언 불가
@@ -15,8 +17,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite2/assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="/mysite0/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite0/assets/css/main.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -24,7 +26,9 @@
 	<div id="wrap">
 
 	<%-- header + navi 공통으로 옮기고 <jsp:include>태그로 불러옴. 경로는 파일 경로고 다른 jsp 조합 가능 (html 주석으로 다니까 무슨 아파치 오류남)--%>
-	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
+	<%-- <jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include> --%>
+	<%-- jstl로 교체 --%>
+	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 	
 
 		<!-- aside없음 -->
@@ -35,7 +39,7 @@
 
 			<div id="index"> 
 			
-				<img id="profile-img" src="/mysite2/assets/image/profile.jpg">
+				<img id="profile-img" src="/mysite0/assets/image/profile.jpg">
 				
 				<div id="greetings">
 					<p class="text-xlarge">
@@ -53,7 +57,7 @@
 						<br>
 						(자유롭게 꾸며보세요!!)<br>
 						<br><br>
-						<a class="" href="">[방명록에 글 남기기]</a>
+						<a class="" href="/mysite0/gbc?action=addList">[방명록에 글 남기기]</a>
 					</p>	
 				</div>
 				<!-- //greetings -->
@@ -68,7 +72,8 @@
 		<div class="clear"></div>
 		
 		<!-- footer -->
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<%--<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include> --%>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	</div>
 	<!-- //wrap -->

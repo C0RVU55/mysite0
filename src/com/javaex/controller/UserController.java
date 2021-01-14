@@ -85,7 +85,7 @@ public class UserController extends HttpServlet {
 				System.out.println("로그인 실패");
 				
 				//리다이렉트 --> 로그인폼 (***실패시 문구 추가를 위해 result값 추가***)
-				WebUtil.redirect(request, response, "/mysite2/user?action=loginForm&result=fail"); 
+				WebUtil.redirect(request, response, "/mysite0/user?action=loginForm&result=fail"); 
 				
 			} else { 	//로그인 성공일 때 세션 만들기
 				System.out.println("로그인 성공");
@@ -95,7 +95,7 @@ public class UserController extends HttpServlet {
 				session.setAttribute("authUser", authVo); //***리퀘스트 아니고 세션 영역의 attribute임 ("불러올이름", 변수명)
 				
 				//리다이렉트 --> main
-				WebUtil.redirect(request, response, "/mysite2/main");	
+				WebUtil.redirect(request, response, "/mysite0/main");	
 			} 
 			
 		} else if ("logout".equals(action)) {
@@ -108,7 +108,7 @@ public class UserController extends HttpServlet {
 			session.invalidate();
 			
 			//리다이렉트 --> main
-			WebUtil.redirect(request, response, "/mysite2/main");
+			WebUtil.redirect(request, response, "/mysite0/main");
 			
 		} else if ("mform".equals(action)) {
 			//System.out.println("회원정보수정 폼");
@@ -177,7 +177,7 @@ public class UserController extends HttpServlet {
 			//(수정한 UserVo를 세션용 UserVo에 넣고 세션 다시 불러와서 바뀐 UserVo를 setAttribute함) --> 원래 이랬는데 순서가 바뀜
 			
 			//리다이렉트 --> main
-			WebUtil.redirect(request, response, "/mysite2/main");	
+			WebUtil.redirect(request, response, "/mysite0/main");	
 		}
 
 	}

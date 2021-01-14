@@ -183,20 +183,20 @@ public class UserDao {
 		try {
 			// 3. SQL문 준비 / 바인딩 / 실행
 			String query = "";
-			query += " update users "; 
-			query += " set id = ?, ";
-			query += "     password = ?, ";
+			query += " update users ";  
+			query += " set password = ?, ";
 			query += "     name = ?, ";
 			query += "     gender = ? ";
 			query += " where no = ? ";
 			
+			//id 수정 안 되게 바꿔놓고 여기는 id 안 빼서 수정사항 반영 안 된 거(세션에 setName()한 건 먹힘) 수정.
+			
 			pstmt = conn.prepareStatement(query); //쿼리로 만들기
 			
-			pstmt.setString(1, uVo.getId());
-			pstmt.setString(2, uVo.getPassword());
-			pstmt.setString(3, uVo.getName());
-			pstmt.setString(4, uVo.getGender());
-			pstmt.setInt(5, uVo.getNo());
+			pstmt.setString(1, uVo.getPassword());
+			pstmt.setString(2, uVo.getName());
+			pstmt.setString(3, uVo.getGender());
+			pstmt.setInt(4, uVo.getNo());
 
 			count = pstmt.executeUpdate(); //쿼리문 실행
 

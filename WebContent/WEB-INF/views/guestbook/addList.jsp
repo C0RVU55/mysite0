@@ -1,46 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%-- 
 <%@ page import="java.util.List" %>
 <%@ page import= "com.javaex.vo.GuestVo" %>
 
 <%
 	List<GuestVo> gList = (List<GuestVo>)request.getAttribute("gList");
 %>
+--%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite2/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="/mysite0/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite0/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 	<div id="wrap">
 
-		<div id="header">
-			<h1>
-				<a href="/mysite2/main">MySite</a>
-			</h1>
-
-			<ul>
-				<li><a href="/mysite2/user?action=loginForm">로그인</a></li>
-				<li><a href="/mysite2/user?action=joinForm">회원가입</a></li>
-			</ul>
-		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul>
-				<li><a href="">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
-		<!-- //nav -->
+	<!-- header + navi -->
+	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<div id="aside">
 			<h2>방명록</h2>
@@ -67,7 +52,7 @@
             <!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="/mysite2/gbc" method="get">
+				<form action="/mysite0/gbc" method="get">
 					<table id="guestAdd">
 						<colgroup>
 							<col style="width: 70px;">
@@ -80,7 +65,7 @@
 								<th><label class="form-text" for="input-uname">이름</label></td>
 								<td><input id="input-uname" type="text" name="name"></td>
 								<th><label class="form-text" for="input-pass">패스워드</label></td>
-								<td><input id="input-pass"type="password" name="pass"></td>
+								<td><input id="input-pass" type="password" name="pass"></td>
 							</tr>
 							<tr>
 								<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -115,7 +100,7 @@
 				</table>
 				<!-- //guestRead -->
 				
-				<%for (int i = 0; i<gList.size(); i++) { %>
+				<c:forEach items="${gList }" var="gList">
 				<table class="guestRead">
 					<colgroup>
 							<col style="width: 10%;">
@@ -124,17 +109,17 @@
 							<col style="width: 10%;">
 					</colgroup>
 					<tr>
-						<td><%=gList.get(i).getNo()%></td>
-						<td><%=gList.get(i).getName()%></td>
-						<td><%=gList.get(i).getRegDate()%></td>
-						<td><a href="/mysite2/gbc?action=dform&no=<%=gList.get(i).getNo()%>">[삭제]</a></td> 
+						<td>${gList.no }</td>
+						<td>${gList.name }</td>
+						<td>${gList.regDate }</td>
+						<td><a href="/mysite0/gbc?action=dform&no=${gList.no }">[삭제]</a></td> 
 						<!-- no파라미터 같이 넘기는 거 또 까먹음...-->
 					</tr>
 					<tr>
-						<td colspan=4 class="text-left"><%=gList.get(i).getContent()%></td>
+						<td colspan=4 class="text-left">${gList.content }</td>
 					</tr>
 				</table>	
-				<%} %>
+				</c:forEach>
 				<!-- //guestRead -->
 				
 			</div>
@@ -143,9 +128,7 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 		
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>

@@ -39,9 +39,9 @@ public class GuestbookController extends HttpServlet {
 		} else if("add".equals(action)) {
 			//System.out.println("방명록 등록");
 			
-			//파라미터
+			//파라미터 (비번 name="pass"인데 getParameter("password")여서 null 나왔던 거 수정)
 			String name = request.getParameter("name");
-			String password = request.getParameter("password");
+			String password = request.getParameter("pass");
 			String content = request.getParameter("content");
 			
 			//dao
@@ -50,7 +50,7 @@ public class GuestbookController extends HttpServlet {
 			gDao.contentAdd(gVo);
 			
 			//리다이렉트
-			WebUtil.redirect(request, response, "/mysite2/gbc?action=addList");
+			WebUtil.redirect(request, response, "/mysite0/gbc?action=addList");
 			
 		} else if ("dform".equals(action)) {
 			
@@ -72,11 +72,11 @@ public class GuestbookController extends HttpServlet {
 
 			if (count == 1) {
 				// redirect
-				WebUtil.redirect(request, response, "/mysite2/gbc?action=addList");
+				WebUtil.redirect(request, response, "/mysite0/gbc?action=addList");
 
 			} else if (count == 0) {
 				// redirect
-				WebUtil.redirect(request, response, "/mysite2/gbc?action=addList");
+				WebUtil.redirect(request, response, "/mysite0/gbc?action=addList");
 			}
 		}
 		

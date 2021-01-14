@@ -1,44 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%-- 
 <%
 	int no = Integer.parseInt(request.getParameter("no"));
 %>
+--%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite2/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite2/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="/mysite0/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="/mysite0/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 	<div id="wrap">
 
-		<div id="header">
-			<h1>
-				<a href="/mysite2/main">MySite</a>
-			</h1>
-
-			<ul>
-				<li><a href="/mysite2/user?action=loginForm">로그인</a></li>
-				<li><a href="/mysite2/user?action=joinForm">회원가입</a></li>
-			</ul>
-		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul>
-				<li><a href="/mysite2/gbc?action=addList">방명록</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">입사지원서</a></li>
-			</ul>
-			<div class="clear"></div>
-		</div>
-		<!-- //nav -->
+	<!-- header + navi -->
+	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		<div id="aside">
 			<h2>방명록</h2>
@@ -65,7 +48,7 @@
             <!-- //content-head -->
 
 			<div id="guestbook">
-				<form action="/mysite2/gbc" method="get">
+				<form action="/mysite0/gbc" method="get">
 					<table id="guestDelete">
 						<colgroup>
 							<col style="width: 10%;">
@@ -77,10 +60,10 @@
 							<td>비밀번호</td>
 							<td><input type="password" name="pass"></td>
 							<td class="text-left"><button type="submit">삭제</button></td>
-							<td><a href="/mysite2/main">[메인으로 돌아가기]</a></td>
+							<td><a href="/mysite0/main">[메인으로 돌아가기]</a></td>
 						</tr>
 					</table>
-					<input type='hidden' name="no" value="<%=no%>"> <!-- no 자바변수 표기 주의^^...-->
+					<input type='hidden' name="no" value="${param.no}"> <!-- no 자바변수 표기 주의^^...-->
 					<input type='hidden' name="action" value="delete"> <!-- action -->
 				</form>
 				
@@ -90,9 +73,7 @@
 		<!-- //content  -->
 		<div class="clear"></div>
 		
-		<div id="footer">
-			Copyright ⓒ 2020 황일영. All right reserved
-		</div>
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 		<!-- //footer -->
 
 	</div>
